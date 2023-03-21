@@ -78,11 +78,26 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: .net-app
-
+          path: .net-app
+#Login in your azure subscription using a service principal (credentials stored as GitHub Secret in repo)
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+           
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
+          subscriptionId: ${{ env.SUBSCRIPTION-ID }}
+          resourceGroupName: ${{ env.RESOURCE-GROUP }}
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.AZURE_CREDENTIALS }}
           package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
+          failOnStdErr: false   
+# Publish website to Azure App Service (WebApp)
+      - name: Publish Website to WebApp
+        uses: Azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.WEBAPP-NAME  }}
+          package: .net-app
