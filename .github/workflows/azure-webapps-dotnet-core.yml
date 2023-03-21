@@ -95,7 +95,7 @@ jobs:
         with:
           subscriptionId: ${{ env.SUBSCRIPTION-ID }}
           resourceGroupName: ${{ env.RESOURCE-GROUP }}
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          app-name: ${{ env.WEBAPP_NAME }}
           package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
           parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
           failOnStdErr: false   
