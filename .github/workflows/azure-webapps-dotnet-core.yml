@@ -91,12 +91,10 @@ jobs:
            
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
+        uses: azure/arm-deploy@v1
         with:
           subscriptionId: ${{ env.SUBSCRIPTION-ID }}
           resourceGroupName: ${{ env.RESOURCE-GROUP }}
-          app-name: ${{ env.WEBAPP_NAME }}
-          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
           template: bicep-template/webapp.bicep
           parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
           failOnStdErr: false   
