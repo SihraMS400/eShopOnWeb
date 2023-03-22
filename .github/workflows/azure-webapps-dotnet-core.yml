@@ -27,6 +27,7 @@ env:
   LOCATION: eastus
   SUBSCRIPTION-ID: 7114308e-1b69-4bbd-927e-7400901127a1
   WEBAPP-NAME: az400-webapp-NAME
+  TEMPLATE-FILE: .azure/bicep/webapp.bicep
 
 on:
   push:
